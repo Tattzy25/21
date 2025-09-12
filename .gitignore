@@ -169,3 +169,5 @@ yarn.lock
 # Temporary files
 *.tmp
 *.temp
+
+.env*.local
