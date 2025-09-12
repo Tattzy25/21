@@ -13,7 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import FileUpload from "@/components/file-upload"
+import { TabRouter } from "@/components/tab-router"
 
 export default function Page() {
   return (
@@ -36,18 +36,13 @@ export default function Page() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>File Upload</BreadcrumbPage>
+                  <BreadcrumbPage>Dashboard</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="bg-muted/50 min-h-[50vh] flex-1 rounded-xl p-6">
-            <h2 className="text-2xl font-bold mb-4">Upload Files to Vercel Blob</h2>
-            <FileUpload />
-          </div>
-        </div>
+        <TabRouter />
       </SidebarInset>
     </SidebarProvider>
   )

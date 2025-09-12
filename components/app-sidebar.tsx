@@ -114,43 +114,49 @@ const data = {
       ],
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Agents",
+      url: "#/agents",
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "All",
+          url: "#/agents",
         },
         {
           title: "Team",
-          url: "#",
+          url: "#/agents",
         },
         {
           title: "Billing",
-          url: "#",
+          url: "#/agents",
         },
         {
           title: "Limits",
-          url: "#",
+          url: "#/agents",
         },
       ],
     },
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      title: "Control Panel",
+      url: "#/control-panel",
       icon: Frame,
+      items: [
+        {
+          title: "Agent-Config",
+          url: "#/control-panel",
+        },
+      ],
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      title: "Sales & Marketing",
+      url: "#/sales-marketing",
       icon: PieChart,
     },
     {
-      name: "Travel",
-      url: "#",
+      title: "Travel",
+      url: "#/travel",
       icon: Map,
     },
   ],
