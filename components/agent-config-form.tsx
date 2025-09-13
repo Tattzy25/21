@@ -11,6 +11,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
 // no icon imports needed
 
@@ -27,12 +29,16 @@ interface AgentConfigFormProps {
   ctaLabel?: string
   onCtaChange?: (label: string) => void
   onSetAlign?: (field: 'provider' | 'model' | 'cta' | 'cap0' | 'cap1' | 'cap2', align: 'left' | 'center' | 'right') => void
+  onToggleEffect?: (field: 'provider' | 'model' | 'cta' | 'cap0' | 'cap1' | 'cap2', key: 'glow' | 'neon' | 'outline' | 'shadow' | 'uppercase' | 'gradient') => void
+  onSetColor?: (field: 'provider' | 'model' | 'cta' | 'cap0' | 'cap1' | 'cap2', color: string) => void
+  currentEffects?: Record<string, Record<string, boolean>>
+  currentColors?: Record<string, string>
   currentFonts?: Record<string, string>
   currentSizes?: Record<string, string>
   currentAligns?: Record<string, 'left' | 'center' | 'right'>
 }
 
-export function AgentConfigForm({ providerName, modelName, capabilities, onChange, onTry, onSave, onSetFont, onSetSize, ctaLabel = 'TAP TO TRY', onCtaChange, onSetAlign, currentFonts = {}, currentSizes = {}, currentAligns = {} }: AgentConfigFormProps) {
+export function AgentConfigForm({ providerName, modelName, capabilities, onChange, onTry, onSave, onSetFont, onSetSize, ctaLabel = 'TAP TO TRY', onCtaChange, onSetAlign, onToggleEffect, onSetColor, currentFonts = {}, currentSizes = {}, currentAligns = {}, currentEffects = {}, currentColors = {} }: AgentConfigFormProps) {
   // Which field is currently targeted by font/size controls
   const [activeField, setActiveField] = React.useState<'provider' | 'model' | 'cta' | 'cap0' | 'cap1' | 'cap2' | 'none'>('none')
 

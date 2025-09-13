@@ -14,29 +14,45 @@ export function AgentConfigWorkstation() {
     'Multi-Context',
   ])
   const [ctaLabel, setCtaLabel] = useState('TAP TO TRY')
+  // Defaults per user
   const [fontByField, setFontByField] = useState<{provider: string; model: string; cta: string; cap0: string; cap1: string; cap2: string}>({
-    provider: 'Audiowide',
+    provider: 'Orbitron',
     model: 'Orbitron',
     cta: 'Orbitron',
-    cap0: 'Geist',
-    cap1: 'Geist',
-    cap2: 'Geist',
+    cap0: 'Space Grotesk',
+    cap1: 'Space Grotesk',
+    cap2: 'Space Grotesk',
   })
   const [sizeByField, setSizeByField] = useState<{provider: string; model: string; cta: string; cap0: string; cap1: string; cap2: string}>({
-    provider: '14',
-    model: '22',
-    cta: '12',
-    cap0: '14',
-    cap1: '14',
-    cap2: '14',
+    provider: '22',
+    model: '32',
+    cta: '24',
+    cap0: '20',
+    cap1: '20',
+    cap2: '20',
   })
   const [alignByField, setAlignByField] = useState<{provider: 'left'|'center'|'right'; model: 'left'|'center'|'right'; cta: 'left'|'center'|'right'; cap0: 'left'|'center'|'right'; cap1: 'left'|'center'|'right'; cap2: 'left'|'center'|'right'}>({
     provider: 'left',
-    model: 'left',
+    model: 'center',
     cta: 'center',
     cap0: 'left',
     cap1: 'left',
     cap2: 'left',
+  })
+
+  type EffectFlags = { glow?: boolean; neon?: boolean; outline?: boolean; shadow?: boolean; uppercase?: boolean; gradient?: boolean }
+  const [effectByField, setEffectByField] = useState<Record<string, EffectFlags>>({
+    provider: {},
+    model: {},
+    cta: {},
+    cap0: { outline: true },
+    cap1: { outline: true },
+    cap2: { outline: true },
+  })
+  const [colorByField, setColorByField] = useState<Record<string, string>>({
+    cap0: '#ffffff',
+    cap1: '#ffffff',
+    cap2: '#ffffff',
   })
 
   const handleTryClick = () => {
@@ -68,9 +84,13 @@ export function AgentConfigWorkstation() {
           onSetFont={(field, font) => setFontByField((p) => ({ ...p, [field]: font }))}
           onSetSize={(field, size) => setSizeByField((p) => ({ ...p, [field]: size }))}
           onSetAlign={(field, align) => setAlignByField((p) => ({ ...p, [field]: align }))}
+          onToggleEffect={(field, key) => setEffectByField((p) => ({ ...p, [field]: { ...(p[field]||{}), [key]: !(p[field]?.[key]) } }))}
+          onSetColor={(field, color) => setColorByField((p) => ({ ...p, [field]: color }))}
           currentFonts={fontByField as any}
           currentSizes={sizeByField as any}
           currentAligns={alignByField as any}
+          currentEffects={effectByField as any}
+          currentColors={colorByField as any}
         />
 
         {/* Right: Provided styled card with updated typography */}
@@ -92,6 +112,8 @@ export function AgentConfigWorkstation() {
             capabilityFonts={[fontByField.cap0, fontByField.cap1, fontByField.cap2]}
             capabilitySizesPx={[parseInt(sizeByField.cap0 || '14', 10), parseInt(sizeByField.cap1 || '14', 10), parseInt(sizeByField.cap2 || '14', 10)]}
             capabilityAligns={[alignByField.cap0, alignByField.cap1, alignByField.cap2]}
+            capabilityEffects={[effectByField.cap0, effectByField.cap1, effectByField.cap2]}
+            capabilityColors={[colorByField.cap0, colorByField.cap1, colorByField.cap2]}
           />
         </Card>
       </div>
