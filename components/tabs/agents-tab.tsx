@@ -1,4 +1,5 @@
-import { AIModelCard } from "@/components/ai-model-card"
+// Using new rectangular Agent Badge Card instead of legacy circular AIModelCard
+import BadgeCard from "@/components/ui/agent-badge-card"
 
 export function AgentsTab() {
   const handleTryModel = () => {
@@ -18,16 +19,14 @@ export function AgentsTab() {
           
           {/* Model Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
-            <AIModelCard
-              modelName="GPT-5"
-              provider="OpenAI"
-              abilities={[
-                "Multimodal",
-                "Orchestration", 
-                "Multi-Context"
-              ]}
-              onTryModel={handleTryModel}
-            />
+            <div onClick={handleTryModel}>
+              <BadgeCard
+                providerName="OpenAI"
+                modelName="GPT-5"
+                capabilities={["Multimodal", "Orchestration", "Multi-Context"]}
+                ctaLabel="TAP TO TRY"
+              />
+            </div>
           </div>
         </div>
 
